@@ -109,23 +109,59 @@ const aguasCont = L.tileLayer.wms(urlWMS, {
     transparent: true,
 })
 
-const asentEdif = L.geoJSON('')
+const asentEdif = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Areas_de_asentamientos_y_edificios",
+    format: 'image/png',
+    transparent: true
+})
 
-const equip = L.geoJSON('')
+const equip = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Areas_de_equipamiento",
+    format: 'image/png',
+    transparent: true
+})
 
-const fabricProc = L.geoJSON('')
+const fabricProc = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Areas_de_fabricacion_y_procesamiento",
+    format: 'image/png',
+    transparent: true
+})
 
-const geomorfologia = L.geoJSON('')
+const geomorfologia = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Areas_de_geomorfologia",
+    format: 'image/png',
+    transparent: true
+})
 
-const transpAereo = L.geoJSON('')
+const transpAereo = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Areas_de_transporte_aereo",
+    format: 'image/png',
+    transparent: true
+})
 
-const zonaCostera = L.geoJSON('')
+const zonaCostera = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Areas_de_zona_costera",
+    format: 'image/png',
+    transparent: true
+})
 
-const restrLim = L.geoJSON('')
+const restrLim = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Areas_restringidas_y_limites",
+    format: 'image/png',
+    transparent: true
+})
 
-const edificios = L.geoJSON('')
+const edificios = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Asent_edif",
+    format: 'image/png',
+    transparent: true
+})
 
-const controles = L.geoJSON('')
+const controles = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Controles",
+    format: 'image/png',
+    transparent: true
+})
 
 const cultivos = L.tileLayer.wms(urlWMS, {
     layers: "sgmremvet:Cultivos, sgmremvet:Sin_vegetacion, sgmremvet:Vegetacion_herbacea, sgmremvet:Vegetacion_arborea, sgmremvet:Vegetacion_arbustiva",
@@ -133,13 +169,29 @@ const cultivos = L.tileLayer.wms(urlWMS, {
     transparent: true
 })
 
-const cultReligion = L.geoJSON('')
+const cultReligion = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Cultura_y_religion",
+    format: 'image/png',
+    transparent: true
+})
 
-const departamento = L.geoJSON('')
+const departamento = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Departamento",
+    format: 'image/png',
+    transparent: true
+})
 
-const edafologia = L.geoJSON('')
+const edafologia = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Edafologia",
+    format: 'image/png',
+    transparent: true
+})
 
-const estOpDef = L.geoJSON('')
+const estOpDef = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Estructuras_operativas_y_defensivas",
+    format: 'image/png',
+    transparent: true
+})
 
 const instMil = L.tileLayer.wms(urlWMS, {
     layers: "sgmremvet:Instalacion_Militar",
@@ -154,89 +206,89 @@ const instMil = L.tileLayer.wms(urlWMS, {
 //         aguasCont.addData(data)
 //     })
 
-fetch(urlAsentEdif)
-    .then((response) => response.json())
-    .then((data) => {
-        asentEdif.addData(data)
-    })
-    
-fetch(urlEquip)
-    .then((response) => response.json())
-    .then((data) => {
-        equip.addData(data)
-    })
-
-fetch(urlFabricProc)
-    .then((response) => response.json())
-    .then((data) => {
-        fabricProc.addData(data)
-    })
-
-fetch(urlGeoformologia)
-    .then((response) => response.json())
-    .then((data) => {
-        geomorfologia.addData(data)
-    })
-    
-fetch(urlTranspAereo)
-    .then((response) => response.json())
-    .then((data) => {
-        transpAereo.addData(data)
-    })
-
-fetch(urlZonaCostera)
-    .then((response) => response.json())
-    .then((data) => {
-        zonaCostera.addData(data)
-    })
-
-fetch(urlRestrLim)
-    .then((response) => response.json())
-    .then((data) => {
-        restrLim.addData(data)
-    })
-    
-fetch(urlEdificios)
-    .then((response) => response.json())
-    .then((data) => {
-        edificios.addData(data)
-    })
-
-fetch(urlControles)
-    .then((response) => response.json())
-    .then((data) => {
-        controles.addData(data)
-    })
-
-// fetch(urlCultivos)
+// fetch(urlAsentEdif)
 //     .then((response) => response.json())
 //     .then((data) => {
-//         cultivos.addData(data)
+//         asentEdif.addData(data)
 //     })
     
-fetch(urlCultReligion)
-    .then((response) => response.json())
-    .then((data) => {
-        cultReligion.addData(data)
-    })
+// fetch(urlEquip)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         equip.addData(data)
+//     })
 
-fetch(urlDepartamento)
-    .then((response) => response.json())
-    .then((data) => {
-        departamento.addData(data)
-    })
+// fetch(urlFabricProc)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         fabricProc.addData(data)
+//     })
 
-fetch(urlEdafologia)
-    .then((response) => response.json())
-    .then((data) => {
-        edafologia.addData(data)
-    })
+// fetch(urlGeoformologia)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         geomorfologia.addData(data)
+//     })
     
-fetch(urlEstOpDef)
-    .then((response) => response.json())
-    .then((data) => {
-        estOpDef.addData(data)
-    })
+// fetch(urlTranspAereo)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         transpAereo.addData(data)
+//     })
+
+// fetch(urlZonaCostera)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         zonaCostera.addData(data)
+//     })
+
+// fetch(urlRestrLim)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         restrLim.addData(data)
+//     })
+    
+// fetch(urlEdificios)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         edificios.addData(data)
+//     })
+
+// fetch(urlControles)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         controles.addData(data)
+//     })
+
+// // fetch(urlCultivos)
+// //     .then((response) => response.json())
+// //     .then((data) => {
+// //         cultivos.addData(data)
+// //     })
+    
+// fetch(urlCultReligion)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         cultReligion.addData(data)
+//     })
+
+// fetch(urlDepartamento)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         departamento.addData(data)
+//     })
+
+// fetch(urlEdafologia)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         edafologia.addData(data)
+//     })
+    
+// fetch(urlEstOpDef)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         estOpDef.addData(data)
+//     })
 
 // fetch(urlInstMil)
 //     .then((response) => response.json())
