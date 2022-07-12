@@ -31,7 +31,7 @@ const setInitialZoom = (clientWidth) => {
 
     return clientWidth < 576 ? mapZoom = 7 :
            clientWidth < 992 ? mapZoom = 8 :
-                               mapZoom = 4.5
+                               mapZoom = 6
 
 }
 
@@ -44,7 +44,7 @@ window.addEventListener('resize', function(){
 
     width < 576 ? map.setZoom(7) :
     width < 992 ? map.setZoom(8) :
-                  map.setZoom(4.5)
+                  map.setZoom(7)
 });
 
 //Crear mapa
@@ -53,7 +53,7 @@ const map = L.map('mapa', {
     zoomControl: false,
     zoomSnap: 0,
     zoomDelta: 0.5
-}).setView([-39.898329829522584, -65.96122519466904], setInitialZoom(browserWidth))
+}).setView([-33.65120829920498, -64.05029296875001], setInitialZoom(browserWidth))
 
 //Cambiar attribution de leaflet
 map.attributionControl.setPrefix('<a href="https://leafletjs.com/" title="A JavaScript library for interactive maps">Leaflet</a>')
@@ -103,102 +103,113 @@ const CAMINOCOLOR = {
 //Markers && Layers
 const urlWMS = "https://remonta.ign.gob.ar/geoserver/sgmremvet/wms?service=WMS&"
 
-const aguasCont = L.tileLayer.wms(urlWMS, {
+const aguasCont = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_de_aguas_continentales",
     format: 'image/png',
     transparent: true,
 })
 
-const asentEdif = L.tileLayer.wms(urlWMS, {
+const asentEdif = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_de_asentamientos_y_edificios",
     format: 'image/png',
     transparent: true
 })
 
-const equip = L.tileLayer.wms(urlWMS, {
+const equip = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_de_equipamiento",
     format: 'image/png',
     transparent: true
 })
 
-const fabricProc = L.tileLayer.wms(urlWMS, {
+const fabricProc = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_de_fabricacion_y_procesamiento",
     format: 'image/png',
     transparent: true
 })
 
-const geomorfologia = L.tileLayer.wms(urlWMS, {
+const geomorfologia = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_de_geomorfologia",
     format: 'image/png',
     transparent: true
 })
 
-const transpAereo = L.tileLayer.wms(urlWMS, {
+const transpAereo = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_de_transporte_aereo",
     format: 'image/png',
     transparent: true
 })
 
-const zonaCostera = L.tileLayer.wms(urlWMS, {
+const zonaCostera = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_de_zona_costera",
     format: 'image/png',
     transparent: true
 })
 
-const restrLim = L.tileLayer.wms(urlWMS, {
+const restrLim = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Areas_restringidas_y_limites",
     format: 'image/png',
     transparent: true
 })
 
-const edificios = L.tileLayer.wms(urlWMS, {
+const edificios = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Asent_edif",
     format: 'image/png',
     transparent: true
 })
 
-const controles = L.tileLayer.wms(urlWMS, {
+const controles = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Controles",
     format: 'image/png',
     transparent: true
 })
 
-const cultivos = L.tileLayer.wms(urlWMS, {
+const cultivos = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Cultivos, sgmremvet:Sin_vegetacion, sgmremvet:Vegetacion_herbacea, sgmremvet:Vegetacion_arborea, sgmremvet:Vegetacion_arbustiva",
     format: 'image/png',
     transparent: true
 })
 
-const cultReligion = L.tileLayer.wms(urlWMS, {
+const cultReligion = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Cultura_y_religion",
     format: 'image/png',
     transparent: true
 })
 
-const departamento = L.tileLayer.wms(urlWMS, {
+const departamento = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Departamento",
     format: 'image/png',
     transparent: true
 })
 
-const edafologia = L.tileLayer.wms(urlWMS, {
+const edafologia = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Edafologia",
     format: 'image/png',
     transparent: true
 })
 
-const estOpDef = L.tileLayer.wms(urlWMS, {
+const estOpDef = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Estructuras_operativas_y_defensivas",
     format: 'image/png',
     transparent: true
 })
 
-const instMil = L.tileLayer.wms(urlWMS, {
+const instMil = L.tileLayer.betterWms(urlWMS, {
     layers: "sgmremvet:Instalacion_Militar",
     format: 'image/png',
     transparent: true
 })
 
+const camposRem = L.tileLayer.betterWms(urlWMS, {
+    layers: "sgmremvet:Campos de Remonta",
+    format: 'image/png',
+    transparent: true
+}).addTo(map)
+
+// const potreros = L.tileLayer.wms(urlWMS, {
+//     layers: "sgmremvet:Potreros RemVet",
+//     format: 'image/png',
+//     transparent: true
+// })
 
 // fetch(urlAguasCont)
 //     .then((response) => response.json())
@@ -305,6 +316,7 @@ const baselayer = {
 }
 
 const overlays = {    
+    'Establecimientos de Remonta y Veterinaria': camposRem,
     'Aguas Continentales': aguasCont,
     'Áreas de Asentamientos y Edificios': asentEdif,
     'Equipamiento': equip,
@@ -319,8 +331,9 @@ const overlays = {
     'Cultura y Religión': cultReligion,
     'Departamentos': departamento,
     'Edafología': edafologia,
-    'Estructuras Operativas y Defensivsaas': estOpDef,
-    'Instalaciones Militares': instMil
+    'Estructuras Operativas y Defensivas': estOpDef,
+    'Instalaciones Militares': instMil,
+    // 'Potreros Remonta y Veterinaria': potreros
 };
 
 const setCollapsed = (clientWidth) => {
@@ -332,3 +345,5 @@ const setCollapsed = (clientWidth) => {
 }
 
 const layerControl = L.control.layers(baselayer, overlays, { collapsed: setCollapsed(browserWidth) }).addTo(map);
+
+map.on('click', (e) => console.log(e) )
