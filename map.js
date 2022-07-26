@@ -53,7 +53,8 @@ const map = L.map('mapa', {
     zoomControl: false,
     zoomSnap: 0,
     zoomDelta: 0.5
-}).setView([-33.65120829920498, -64.05029296875001], setInitialZoom(browserWidth))
+}).setView([-33.65120829920498, -64.05029296875001],
+    setInitialZoom(browserWidth))
 
 //Cambiar attribution de leaflet
 map.attributionControl.setPrefix('<a href="https://leafletjs.com/" title="A JavaScript library for interactive maps">Leaflet</a>')
@@ -69,21 +70,6 @@ const setIcon = L.Icon.extend({
         iconAnchor: new L.Point(12, 12),
     }
 });
-
-// const lutoIcon = new setIcon({
-//     iconUrl: './img/banderaLuto.jpg',
-//     iconSize: new L.Point(40, 30)
-// })
-
-//Styles para definir las capas en el mapa
-// const styles = (color, weight, dashArray = null) => {
-//     return {
-//         color,
-//         weight,
-//         dashArray,
-//         fillOpacity: 0
-//     }
-// }
 
 //Decoder
 function decode_utf8(word) {
@@ -205,11 +191,11 @@ const camposRem = L.tileLayer.betterWms(urlWMS, {
     transparent: true
 }).addTo(map)
 
-// const potreros = L.tileLayer.wms(urlWMS, {
-//     layers: "sgmremvet:Potreros RemVet",
-//     format: 'image/png',
-//     transparent: true
-// })
+const potreros = L.tileLayer.wms(urlWMS, {
+    layers: "sgmremvet:Potreros RemVet",
+    format: 'image/png',
+    transparent: true
+})
 
 // fetch(urlAguasCont)
 //     .then((response) => response.json())
@@ -333,7 +319,7 @@ const overlays = {
     'Edafología': edafologia,
     'Estructuras Operativas y Defensivas': estOpDef,
     'Instalaciones Militares': instMil,
-    // 'Potreros Remonta y Veterinaria': potreros
+    'Potreros Remonta y Veterinaria': potreros
 };
 
 const setCollapsed = (clientWidth) => {
